@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-__author__ = "Swaminathan Kanna"
+__author__ = "Swaminathan Kannan"
 
 def readf(textf): #Reads the fasta file
     seq_dict={}
