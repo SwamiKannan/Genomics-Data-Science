@@ -1,5 +1,6 @@
-
-__author__ = "Swaminathan Kannan"
+#!/usr/bin/env python
+# coding: utf-8
+__author__ = "Swaminathan Kanna"
 
 def readf(textf): #Reads the fasta file
     seq_dict={}
@@ -19,9 +20,7 @@ def reverse_complement(seq):
     for s in seq:
         complementary_seq=complement[s]+complementary_seq
     return complementary_seq
-    
-#!/usr/bin/env python
-# coding: utf-8
+
 __author__ = "Swaminathan Kannan"
 
 # # <center> Function compilation for algorithms in Week 1 </center>
