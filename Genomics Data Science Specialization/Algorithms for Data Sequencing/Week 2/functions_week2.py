@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
+__author__ = "Swaminathan Kannan"
 
 # # <center> Function compilation for algorithms in Week 2 </center>
 
