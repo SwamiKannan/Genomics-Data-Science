@@ -3,8 +3,6 @@
 
 # # <center> Function compilation for algorithms in Week 2 </center>
 
-# In[1]:
-
 
 import bm_preproc
 from bm_preproc import BoyerMoore
@@ -16,15 +14,11 @@ import numpy as np
 from scipy.stats import norm
 
 
-# In[2]:
-
 
 alphabet='ATCG' #dictionary of letters for all BoyerMoore's object
 
 
 # ### Processing of pattern 'p' and not processing text 't' (Online processing)
-
-# In[3]:
 
 
 def boyer_moore(pattern,text,bm_obj):
@@ -49,8 +43,6 @@ def boyer_moore(pattern,text,bm_obj):
 
 # #### Indexing
 
-# In[6]:
-
 
 #Understanding the bisect function. Basically, bisect_left tells us the left most position in text where we can insert a specific string 
 import bisect
@@ -66,8 +58,6 @@ def find_insertion(text, pattern):
 # <li> We then create similar k-mers of the pattern and look up the index of the pattern k-mer to see if it exists. ----> <b>find_all_indexes()</b></li>
 # <li> Once we confirm that the kmer exists, we use the same to VERIFY if the rest of the pattern is also present at the offset ---> <b>verify_pattern()</b></li></ol>
 
-# In[8]:
-
 
 def create_index(text, kmer): #Create the index of all kmers from text 't'
     index={}
@@ -81,16 +71,10 @@ def create_index(text, kmer): #Create the index of all kmers from text 't'
 
 # find_insertion_index() only provides us with the first insertion point, if any, for the pattern <b> k-mer </b>. We still need to perform verification for the rest of the pattern
 
-# In[9]:
-
-
 def find_all_indexes(index, pattern,kmer): #does not use bisect
     sample=pattern[:kmer]
     if sample in index.keys():
         return index[sample]
-
-
-# In[10]:
 
 
 def verify_pattern(index, text, pattern,kmer):
@@ -114,9 +98,6 @@ def verify_pattern(index, text, pattern,kmer):
 
 # Subsequence matching would pretty much follow the K-mer lookup process except we need an additional function that creates the logic for the substrings
 
-# In[12]:
-
-
 def create_subsequence(text, leng,interval):#creates subsequences of length "leng" whose initial chars are "interval" values apart
     subsequence=[]
     for i in range(len(text)):
@@ -130,10 +111,6 @@ def create_subsequence(text, leng,interval):#creates subsequences of length "len
         i+=1
     return subsequence
 
-
-# In[14]:
-
-
 def create_subsequence_index(text, leng, interval):
     index={}
     subsequences=create_subsequence(text, leng, interval)
@@ -144,10 +121,6 @@ def create_subsequence_index(text, leng, interval):
         else:
             index[subsequence_key[i]]=[subsequence_value[i]]
     return index,subsequences        
-
-
-# In[15]:
-
 
 def find_subsequence_index(index, pattern, leng, interval):
     occurances=[]
@@ -160,9 +133,6 @@ def find_subsequence_index(index, pattern, leng, interval):
             occurances.append(index[0][sub])
         count+=1
     return occurances,len(subsequence_key_pattern),count
-
-
-# In[16]:
 
 
 def verify_subsequence_pattern(index, text,pattern, leng, interval,mismatch_threshold=1):
@@ -193,14 +163,8 @@ def verify_subsequence_pattern(index, text,pattern, leng, interval,mismatch_thre
 
 # ##### Use BoyerMoore naive lookup
 
-# In[24]:
-
-
 def get_BM_model(p,alphabet='ATGC'):
     return BoyerMoore(p,alphabet)
-
-
-# In[25]:
 
 
 def get_patterns(p, mismatches):
@@ -212,10 +176,6 @@ def get_patterns(p, mismatches):
         batches.append(p[i:i+batch_size])
     return batches
                        
-
-
-# In[26]:
-
 
 def compare_batches_bm(batches, text, pattern, mismatch_th=2):
     complete_matches=set()
@@ -244,9 +204,6 @@ def compare_batches_bm(batches, text, pattern, mismatch_th=2):
 
 # ##### Use Index Matching
 
-# In[28]:
-
-
 def create_index1(text, kmer): #Create the index of all kmers from text 't' #### This is just a copy-paste from above for easy readability
     index={}
     for i in range(len(text)-kmer+1):
@@ -255,10 +212,6 @@ def create_index1(text, kmer): #Create the index of all kmers from text 't' ####
         else:
             index[text[i:i+kmer]]=[i]
     return index
-
-
-# In[61]:
-
 
 def compare_batches_index(batches, text, pattern, index,kmer, mismatch_th=2):
     complete_matches=[]
