@@ -8,3 +8,9 @@ This is my exploration of understanding Genomics as a use case for data science
 Contents:
 <ul>
  <li>Genomics Data Specialization - Code representations of various DNA sequencing algorithms</li>
+
+ 
+ 
+ 
+ 
+ Image Credit: Keck Graduate Institute 
